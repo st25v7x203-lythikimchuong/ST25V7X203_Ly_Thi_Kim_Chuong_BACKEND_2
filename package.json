@@ -1,0 +1,32 @@
+{
+  "name": "contactbook-backend",
+  "version": "1.0.0",
+  "description": "contactbook-backend",
+  "license": "ISC",
+  "author": "ly thi kim chuong",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "mongodb": "^7.9.0"
+  },
+  "devDependencies": {
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/st25v7x203-lythikimchuong/ST25V7X203_Ly_Thi_Kim_Chuong_BACKEND_1.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/st25v7x203-lythikimchuong/ST25V7X203_Ly_Thi_Kim_Chuong_BACKEND_1/issues"
+  },
+  "homepage": "https://github.com/st25v7x203-lythikimchuong/ST25V7X203_Ly_Thi_Kim_Chuong_BACKEND_1#readme"
+}
