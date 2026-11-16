@@ -1,10 +1,9 @@
 
-const ContactService = require('../services/contact.service');
-
 // Lấy tất cả liên hệ
 exports.findAll = async (req, res, next) => {
     try {
-        const contacts = await ContactService.findAll();
+        const contactService = req.app.locals.contactService;
+        const contacts = await contactService.findAll();
         res.send(contacts);
     } catch (error) {
         next(error);
@@ -14,7 +13,8 @@ exports.findAll = async (req, res, next) => {
 // Lấy liên hệ yêu thích
 exports.findFavorite = async (req, res, next) => {
     try {
-        const contacts = await ContactService.findFavorite();
+        const contactService = req.app.locals.contactService;
+        const contacts = await contactService.findFavorite();
         res.send(contacts);
     } catch (error) {
         next(error);
@@ -24,8 +24,9 @@ exports.findFavorite = async (req, res, next) => {
 // Xóa tất cả liên hệ
 exports.deleteAll = async (req, res, next) => {
     try {
-        await ContactService.deleteAll();
-        res.send({ message: 'All contacts deleted successfully' });
+        const contactService = req.app.locals.contactService;
+        await contactService.deleteAll();
+        res.send({ message: "All contacts deleted successfully" });
     } catch (error) {
         next(error);
     }
@@ -34,10 +35,11 @@ exports.deleteAll = async (req, res, next) => {
 // Lấy một liên hệ theo ID
 exports.findOne = async (req, res, next) => {
     try {
-        const contact = await ContactService.findOne(req.params.id);
+        const contactService = req.app.locals.contactService;
+        const contact = await contactService.findById(req.params.id);
 
         if (!contact) {
-            return res.status(404).send({ message: 'Contact not found' });
+            return res.status(404).send({ message: "Contact not found" });
         }
 
         res.send(contact);
@@ -49,7 +51,8 @@ exports.findOne = async (req, res, next) => {
 // Thêm liên hệ mới
 exports.create = async (req, res, next) => {
     try {
-        const contact = await ContactService.create(req.body);
+        const contactService = req.app.locals.contactService;
+        const contact = await contactService.create(req.body);
         res.status(201).send(contact);
     } catch (error) {
         next(error);
@@ -59,10 +62,11 @@ exports.create = async (req, res, next) => {
 // Cập nhật liên hệ
 exports.update = async (req, res, next) => {
     try {
-        const contact = await ContactService.update(req.params.id, req.body);
+        const contactService = req.app.locals.contactService;
+        const contact = await contactService.update(req.params.id, req.body);
 
         if (!contact) {
-            return res.status(404).send({ message: 'Contact not found' });
+            return res.status(404).send({ message: "Contact not found" });
         }
 
         res.send(contact);
@@ -74,13 +78,14 @@ exports.update = async (req, res, next) => {
 // Xóa một liên hệ
 exports.delete = async (req, res, next) => {
     try {
-        const result = await ContactService.delete(req.params.id);
+        const contactService = req.app.locals.contactService;
+        const result = await contactService.delete(req.params.id);
 
         if (!result) {
-            return res.status(404).send({ message: 'Contact not found' });
+            return res.status(404).send({ message: "Contact not found" });
         }
 
-        res.send({ message: 'Contact deleted successfully' });
+        res.send({ message: "Contact deleted successfully" });
     } catch (error) {
         next(error);
     }
